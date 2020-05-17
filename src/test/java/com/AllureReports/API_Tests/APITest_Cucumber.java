@@ -6,7 +6,7 @@ import static org.hamcrest.Matchers.*;
 
 
 public class APITest_Cucumber {
-  @Test
+  @Test(enabled=true)
   public void getWeatherTest() {
 	  given()
 	  .when()

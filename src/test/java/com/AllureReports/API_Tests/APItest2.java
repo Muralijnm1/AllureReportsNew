@@ -1,18 +1,11 @@
 package com.AllureReports.API_Tests;
 
 import org.json.simple.JSONObject;
-import org.testng.annotations.Test;
-
 //import static io.restassured.RestAssured;
 import org.testng.Assert;
-import org.testng.SkipException;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import io.restassured.RestAssured;
 import io.restassured.http.Method;
-import io.restassured.internal.path.json.mapping.JsonObjectDeserializer;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
