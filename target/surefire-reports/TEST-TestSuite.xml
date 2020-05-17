@@ -1,67 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="TestSuite" time="33.068" tests="3" errors="0" skipped="1" failures="1">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="TestSuite" time="86.572" tests="3" errors="0" skipped="1" failures="1">
   <properties>
-    <property name="sun.desktop" value="windows"/>
-    <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
-    <property name="java.specification.version" value="11"/>
-    <property name="sun.cpu.isalist" value="amd64"/>
-    <property name="sun.jnu.encoding" value="Cp1252"/>
-    <property name="java.class.path" value="C:\Users\admin\.p2\pool\plugins\org.eclipse.m2e.maven.runtime_1.10.0.20181127-2120\jars\plexus-classworlds-2.5.2.jar"/>
-    <property name="java.vm.vendor" value="Oracle Corporation"/>
-    <property name="sun.arch.data.model" value="64"/>
-    <property name="user.variant" value=""/>
-    <property name="java.vendor.url" value="http://java.oracle.com/"/>
-    <property name="user.timezone" value="Asia/Calcutta"/>
-    <property name="os.name" value="Windows 10"/>
-    <property name="java.vm.specification.version" value="11"/>
-    <property name="sun.java.launcher" value="SUN_STANDARD"/>
-    <property name="user.country" value="US"/>
-    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-11.0.2\bin"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -B test"/>
-    <property name="jdk.debug" value="release"/>
-    <property name="maven.home" value="C:\Users\admin\eclipse-workspace\AllureReporting\EMBEDDED"/>
-    <property name="sun.cpu.endian" value="little"/>
-    <property name="user.home" value="C:\Users\admin"/>
-    <property name="user.language" value="en"/>
-    <property name="java.specification.vendor" value="Oracle Corporation"/>
-    <property name="java.version.date" value="2019-01-15"/>
-    <property name="java.home" value="C:\Program Files\Java\jdk-11.0.2"/>
-    <property name="file.separator" value="\"/>
-    <property name="java.vm.compressedOopsMode" value="Zero based"/>
-    <property name="line.separator" value="&#10;"/>
-    <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
-    <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
-    <property name="user.script" value=""/>
-    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
-    <property name="java.runtime.version" value="11.0.2+9-LTS"/>
-    <property name="user.name" value="admin"/>
-    <property name="path.separator" value=";"/>
-    <property name="os.version" value="10.0"/>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
-    <property name="file.encoding" value="Cp1252"/>
+    <property name="sun.boot.library.path" value="F:\Java\jdk1.8.0_66\jre\bin"/>
+    <property name="java.vm.version" value="25.66-b17"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="maven.multiModuleProjectDirectory" value="F:\GitRepository\AllureReports22Apr2020"/>
+    <property name="java.vendor.url" value="http://java.oracle.com/"/>
+    <property name="path.separator" value=";"/>
     <property name="guice.disable.misplaced.annotation.check" value="true"/>
     <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
-    <property name="java.vendor.version" value="18.9"/>
-    <property name="java.vendor.url.bug" value="http://bugreport.java.com/bugreport/"/>
-    <property name="java.io.tmpdir" value="C:\Users\admin\AppData\Local\Temp\"/>
-    <property name="java.version" value="11.0.2"/>
-    <property name="user.dir" value="C:\Users\admin\eclipse-workspace\AllureReporting"/>
-    <property name="os.arch" value="amd64"/>
-    <property name="maven.multiModuleProjectDirectory" value="C:\Users\admin\eclipse-workspace\AllureReporting"/>
-    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
+    <property name="file.encoding.pkg" value="sun.io"/>
+    <property name="user.script" value=""/>
+    <property name="user.country" value="US"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.os.patch.level" value=""/>
-    <property name="java.library.path" value="C:\Program Files\Java\jdk-11.0.2\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Program Files/Java/jre1.8.0_211/bin/server;C:/Program Files/Java/jre1.8.0_211/bin;C:/Program Files/Java/jre1.8.0_211/lib/amd64;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;E:\app\OracleHomeUser1\product\12.1.0\dbhome_1\bin;C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\PuTTY\;C:\Program Files\Git\bin\;C:\Drivers\IEDriverServer_Win32_3.7.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\Python3.6.4;C:\Program Files (x86)\Python3.6.4\Scripts;C:\apache-maven-3.6.1\\bin;C:\apache-maven-3.6.1\bin;C:\apache-maven-3.6.1\;C:\Program Files\Android\Android Studio\bin;C:\Program Files\Java\jdk1.8.0_211\\bin;C:\Users\admin\AppData\Local\Android\Sdk\platform-tools;C:\Users\admin\AppData\Local\Android\Sdk\tools;C:\Users\admin\AppData\Local\Android\Sdk\build-tools;C:\Users\admin\AppData\Local\Android\Sdk\build-tools\bin;C:\Users\admin\AppData\Local\Android\Sdk\tools\bin;C:\Program Files\Java\jdk1.8.0_211\;C:\Program Files\Java\jdk1.8.0_211\\lib;E:\app\OracleHomeUser1\instantclient_18_3;C:\Program Files\nodejs\;C:\gradle-5.4.1\bin;C:\Program Files\Java\jdk1.8.0_211\bin;C:\allure-2.13.0\bin;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;%USERPROFILE%\AppData\Local\Microsoft\WindowsApps;;C:\Users\admin\Desktop;;."/>
-    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="user.dir" value="F:\GitRepository\AllureReports22Apr2020"/>
+    <property name="java.runtime.version" value="1.8.0_66-b17"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
+    <property name="java.endorsed.dirs" value="F:\Java\jdk1.8.0_66\jre\lib\endorsed"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.io.tmpdir" value="C:\Windows\TEMP\"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="user.variant" value=""/>
+    <property name="os.name" value="Windows 7"/>
+    <property name="classworlds.conf" value="F:\Eclipse\WorkSpaceLab\apache-maven-3.6.3\bin\..\bin\m2.conf"/>
+    <property name="sun.jnu.encoding" value="Cp1252"/>
+    <property name="java.library.path" value="F:\Java\jdk1.8.0_66\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;F:\Java\jdk1.8.0_66/bin;F:\Java\jdk1.8.0_66/bin;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;F:\Git\cmd;F:\Java\jdk1.8.0_66\bin;C:\Program Files\nodejs\;F:\Java\Appium\sdk-tools-windows-4333796\platform-tools;F:\Java\Appium\sdk-tools-windows-4333796\tools;F:\allure-2.13.1\bin;F:\Eclipse\WorkSpaceLab\apache-maven-3.6.3\bin;;."/>
+    <property name="maven.conf" value="F:\Eclipse\WorkSpaceLab\apache-maven-3.6.3\bin\../conf"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.class.version" value="52.0"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="os.version" value="6.1"/>
+    <property name="library.jansi.path" value="F:\Eclipse\WorkSpaceLab\apache-maven-3.6.3\bin\..\lib\jansi-native"/>
+    <property name="user.home" value="C:\Windows\system32\config\systemprofile"/>
+    <property name="user.timezone" value="Asia/Calcutta"/>
+    <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
+    <property name="java.specification.version" value="1.8"/>
+    <property name="file.encoding" value="Cp1252"/>
+    <property name="user.name" value="USER-PC$"/>
+    <property name="java.class.path" value="F:\Eclipse\WorkSpaceLab\apache-maven-3.6.3\bin\..\boot\plexus-classworlds-2.6.0.jar"/>
+    <property name="java.vm.specification.version" value="1.8"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.home" value="F:\Java\jdk1.8.0_66\jre"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -f pom.xml clean install"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="user.language" value="en"/>
+    <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
     <property name="java.vm.info" value="mixed mode"/>
-    <property name="java.vm.version" value="11.0.2+9-LTS"/>
-    <property name="classworlds.conf" value="C:\Users\admin\eclipse-workspace\.metadata\.plugins\org.eclipse.m2e.launching\launches\m2conf3241717790496799835.tmp"/>
+    <property name="java.version" value="1.8.0_66"/>
+    <property name="java.ext.dirs" value="F:\Java\jdk1.8.0_66\jre\lib\ext;C:\Windows\Sun\Java\lib\ext"/>
+    <property name="sun.boot.class.path" value="F:\Java\jdk1.8.0_66\jre\lib\resources.jar;F:\Java\jdk1.8.0_66\jre\lib\rt.jar;F:\Java\jdk1.8.0_66\jre\lib\sunrsasign.jar;F:\Java\jdk1.8.0_66\jre\lib\jsse.jar;F:\Java\jdk1.8.0_66\jre\lib\jce.jar;F:\Java\jdk1.8.0_66\jre\lib\charsets.jar;F:\Java\jdk1.8.0_66\jre\lib\jfr.jar;F:\Java\jdk1.8.0_66\jre\classes"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="maven.home" value="F:\Eclipse\WorkSpaceLab\apache-maven-3.6.3\bin\.."/>
+    <property name="file.separator" value="\"/>
+    <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
+    <property name="sun.cpu.endian" value="little"/>
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
-    <property name="java.class.version" value="55.0"/>
+    <property name="sun.desktop" value="windows"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase name="logoPresence" classname="allureReports.Tests" time="0.39"/>
-  <testcase name="loginTest" classname="allureReports.Tests" time="8.516">
+  <testcase name="logoPresence" classname="allureReports.Tests" time="0.772"/>
+  <testcase name="loginTest" classname="allureReports.Tests" time="12.333">
     <failure message="expected [nopCommerce demo store123] but found [nopCommerce demo store]" type="java.lang.AssertionError">java.lang.AssertionError: expected [nopCommerce demo store123] but found [nopCommerce demo store]
 	at allureReports.Tests.loginTest(Tests.java:60)
 </failure>
@@ -69,6 +71,14 @@
 I am in onTestFailure method loginTest failed
 Screenshot captured for test case:loginTest
 ]]></system-out>
+    <system-err><![CDATA[[1588312542.206][SEVERE]: Timed out receiving message from renderer: 0.100
+[1588312542.344][SEVERE]: Timed out receiving message from renderer: 0.100
+[1588312542.458][SEVERE]: Timed out receiving message from renderer: 0.100
+[1588312542.652][SEVERE]: Timed out receiving message from renderer: 0.100
+[1588312547.490][SEVERE]: Timed out receiving message from renderer: 0.100
+[1588312547.900][SEVERE]: Timed out receiving message from renderer: 0.100
+[1588312548.005][SEVERE]: Timed out receiving message from renderer: 0.100
+]]></system-err>
   </testcase>
   <testcase name="registrationTest" classname="allureReports.Tests" time="0">
     <skipped message="Skipping this Test"/>
