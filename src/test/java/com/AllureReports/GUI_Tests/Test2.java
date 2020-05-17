@@ -3,13 +3,13 @@ package com.AllureReports.GUI_Tests;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
-import org.testng.SkipException;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.AllureReports.Utilities.BaseClass;
+import com.AllureReports.Utilities.ReadConfig;
 
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
@@ -50,9 +50,10 @@ public class Test2 extends BaseClass {
 	@Story("Story:Valid login")
 	@Step("Verify login")
 	public void loginTest() throws InterruptedException {
-		driver.findElement(By.linkText("Log in")).click();
-		driver.findElement(By.id("Email")).sendKeys("pavanoltraining@gmail.com");
-		driver.findElement(By.id("Password")).sendKeys("Test@123");
+		driver.findElement(By.linkText("Log in")).click();	
+		System.out.println(ReadConfig.getUsername());
+		driver.findElement(By.id("Email")).sendKeys(ReadConfig.getUsername());
+		driver.findElement(By.id("Password")).sendKeys(ReadConfig.getPassword());
 		driver.findElement(By.xpath("//input[@class='button-1 login-button']")).click();
 		Thread.sleep(3000);
 		Assert.assertEquals(driver.getTitle(), "nopCommerce demo store");
@@ -67,7 +68,8 @@ public class Test2 extends BaseClass {
 	@Story("Story:User registration")
 
 	public void registrationTest() {
-		throw new SkipException("Skipping this Test");
+		System.out.println("I am in registrationTest");
+		//throw new SkipException("Skipping this Test");
 	}
 
 	@AfterMethod

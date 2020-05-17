@@ -11,7 +11,7 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import junit.framework.Assert;
 
-public class APItest {
+public class APItest1 {
 
 	@Test(enabled = false)
 

@@ -6,7 +6,7 @@ import java.util.Properties;
 
 public class ReadConfig {
 
-	Properties pro;
+	static Properties pro;
 	
 	public ReadConfig()
 	{
@@ -27,13 +27,13 @@ public class ReadConfig {
 		return url;
 	}
 	
-	public String getUsername()
+	public static String getUsername()
 	{
 	String username=pro.getProperty("username");
 	return username;
 	}
 	
-	public String getPassword()
+	public static String getPassword()
 	{
 	String password=pro.getProperty("password");
 	return password;
@@ -62,6 +62,8 @@ public class ReadConfig {
 		return browser;
 	}
 
+	
+	
 	
 }
 
