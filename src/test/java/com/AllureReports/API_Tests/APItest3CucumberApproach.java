@@ -17,9 +17,9 @@ public class APItest3CucumberApproach {
 		
 		 HashMap map = new HashMap();
 		 map.put("id", 101);
-		 map.put("firstName", "Pavan");
-		 map.put("email", "abc@gmail.com");
-		 map.put("program", "Manager");
+		 map.put("firstName", "Pavan1");
+		 map.put("email", "abc@gmail1.com");
+		 map.put("program", "Manager1");
 		 ArrayList<String> courseList = new ArrayList<String>();
 		 courseList.add("Java");
 		 courseList.add("Selenium");

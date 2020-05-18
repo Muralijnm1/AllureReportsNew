@@ -15,8 +15,7 @@ public class APITest_Cucumber {
 	  		.statusCode(200)
 	  		.statusLine("HTTP/1.1 200 OK")
 	  		.assertThat().body("City",equalTo("Hyderabad"))
-	  		.header("Content-Type","application/json");
-	  
+	  		.header("Content-Type","application/json");	  
 	  
   }
 
