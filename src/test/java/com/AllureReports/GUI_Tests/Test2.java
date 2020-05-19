@@ -19,14 +19,14 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 
-@Listeners({ allureReports.AllureListener.class })
+@Listeners({ com.AllureReports.ReportsGeneration.AllureListener.class })
 public class Test2 extends BaseClass {
 
 	public WebDriver driver;
 
 	@BeforeMethod
 	public void setUp() {
-		setup();
+		super.setUp();
 		this.driver = getDriver();
 	}
 
