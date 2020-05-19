@@ -1,4 +1,4 @@
-package allureReports;
+package com.AllureReports.ReportsGeneration;
 
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
