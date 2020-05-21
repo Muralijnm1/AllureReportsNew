@@ -1,7 +1,5 @@
 package com.AllureReports.Pages;
 
-import static org.testng.Assert.assertEquals;
-
 import java.io.IOException;
 
 import org.openqa.selenium.WebDriver;
@@ -15,12 +13,6 @@ import com.AllureReports.Utilities.BaseClass;
 public class LoginPage extends BaseClass {
 	
 	WebDriver driver;
-	public LoginPage(WebDriver driver) throws IOException {
-		
-		this.driver=driver;
-		PageFactory.initElements(driver, this);		
-	}
-
 	@FindBy(xpath = "//input[contains(@placeholder,'active Email ID')]")	
 	WebElement txboxUserid;
 	
@@ -29,7 +21,14 @@ public class LoginPage extends BaseClass {
 	
 	@FindBy(xpath = "//button[contains(@type,'submit') and contains(text(),'Login')]")	
 	WebElement btnLogin;
-	
+
+	public LoginPage(WebDriver driver) throws IOException {
+		
+		this.driver=driver;
+		PageFactory.initElements(driver, this);		
+	}
+
+		
 	public void enterUserid(String userId){		
 		smartWait(txboxUserid).clear();
 		txboxUserid.sendKeys(userId);		

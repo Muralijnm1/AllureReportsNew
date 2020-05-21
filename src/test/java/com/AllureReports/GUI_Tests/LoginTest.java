@@ -8,7 +8,11 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import com.AllureReports.Pages.HomePage;
+import com.AllureReports.Pages.HomePageAfterLogin;
+import com.AllureReports.Pages.LoginPage;
 import com.AllureReports.Utilities.BaseClass;
+import com.AllureReports.Utilities.ReadConfig;
+
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
@@ -26,15 +30,11 @@ public class LoginTest extends BaseClass {
 	public void setUp() {
 		super.setUp();
 		this.driver = getDriver();
-		System.out.println("in BeforeMethod ");		
-		if(driver==null)
-		{
-			System.out.println("setup:driver is null");
-		}
-			
-			//closeAllPopups();
-			//closeAllAlerts();
-			//pageScrollUp();
+		System.out.println("in BeforeMethod ");	
+		
+			closeAllPopups();
+			closeAllAlerts();
+			pageScrollUp();
 			wait(3000);
 			//pageScrollDown();
 	}
@@ -62,12 +62,14 @@ public class LoginTest extends BaseClass {
 		
 		HomePage homePage = new HomePage(driver);
 		homePage.clickOnLogin();
-	/*	LoginPage loginPage = new LoginPage(driver);
+		Thread.sleep(6000);
+		closeAllAlerts();
+		LoginPage loginPage = new LoginPage(driver);
 		loginPage.enterUserid(ReadConfig.getUsername());
 		loginPage.enterPassword(ReadConfig.getUsername());
 		loginPage.clickOnLogin();
 		HomePageAfterLogin homePageAfterLogin = new HomePageAfterLogin(driver);
-		homePageAfterLogin.validateLogin();	*/	
+		homePageAfterLogin.validateLogin();		
 	}
 
 	/*@Severity(SeverityLevel.NORMAL)

@@ -10,7 +10,7 @@ public class ReadConfig {
 	
 	public ReadConfig()
 	{
-		File src = new File("F://GitRepository//AllureReports22Apr2020//src//test//java//Configuration//config.properties");
+		File src = new File("F://GitRepository//AllureReports22Apr2020//src//test//java//com//AllureReports//Configuration//config.properties");
 		//F:\GitRepository\AllureReports22Apr2020\src\test\java\Configuration\config.properties
 		try {
 			FileInputStream fis = new FileInputStream(src);
