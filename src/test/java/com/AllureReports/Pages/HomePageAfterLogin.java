@@ -12,7 +12,7 @@ import com.AllureReports.Utilities.BaseClass;
 import com.AllureReports.Utilities.ReadConfig;
 
 public class HomePageAfterLogin extends BaseClass {
-	WebDriver driver;
+	//WebDriver driver;
 
 	@FindBy(xpath = "//div[contains(@title,'Murali')]")
 	WebElement txtUserName;
@@ -23,9 +23,9 @@ public class HomePageAfterLogin extends BaseClass {
 	@FindBy(xpath = "//a[@title='Edit Profile']")
 	WebElement menuOptionEditProfile;
 
-	public HomePageAfterLogin(WebDriver driver) throws IOException {
+	public HomePageAfterLogin() throws IOException {
 		//super();
-		this.driver = driver;
+		//this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
 
@@ -55,14 +55,40 @@ public class HomePageAfterLogin extends BaseClass {
 	}
 	
 	public void hoverOverOnMyNaukri(){
+		try{
 		hoverOver(menuMyNaukri);
+		System.out.println("hoverOver on 'menuMyNaukri'");
+		}
+		catch(Exception e)
+		{
+			System.out.println("Not able to hoverOver on 'menuMyNaukri' "+this.getClass()+e.getMessage());
+
+		}
 	}
 	
-	
+	public void clickOnMyNaukri(){
+		try{
+		menuMyNaukri.click();;
+		System.out.println("cliked on 'menuMyNaukri'");
+		}
+		catch(Exception e)
+		{
+			System.out.println("Not able to click on 'menuMyNaukri' "+this.getClass()+e.getMessage());
+
+		}
+	}
 
 
 	public void clickOnEditProfileOption(){
+		
+		try{
 		menuOptionEditProfile.click();
+		System.out.println("clicked on 'menuOptionEditProfile'");
+		}
+		catch (Exception e)
+		{
+			System.out.println("Not able to click on 'menuOptionEditProfile' "+this.getClass()+e.getMessage());
+		}
 	}
 	
 

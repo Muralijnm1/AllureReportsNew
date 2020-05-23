@@ -12,7 +12,7 @@ import com.AllureReports.Utilities.BaseClass;
 
 public class LoginPage extends BaseClass {
 	
-	WebDriver driver;
+	//WebDriver driver;
 	@FindBy(xpath = "//input[contains(@placeholder,'active Email ID')]")	
 	WebElement txboxUserid;
 	
@@ -22,15 +22,23 @@ public class LoginPage extends BaseClass {
 	@FindBy(xpath = "//button[contains(@type,'submit') and contains(text(),'Login')]")	
 	WebElement btnLogin;
 
-	public LoginPage(WebDriver driver) throws IOException {
+	public LoginPage() throws IOException {
 		
-		this.driver=driver;
+		//this.driver=driver;
 		PageFactory.initElements(driver, this);		
 	}
 
 		
 	public void enterUserid(String userId){		
-		smartWait(txboxUserid).clear();
+		if(driver==null){
+			System.out.println("The driver is null");
+			
+		}
+		if(!txboxUserid.isDisplayed()){
+			System.out.println("The driver is null");
+			
+		}
+		txboxUserid.clear();
 		txboxUserid.sendKeys(userId);		
 	}
 	

@@ -11,11 +11,11 @@ import org.openqa.selenium.support.PageFactory;
 import com.AllureReports.Utilities.BaseClass;
 
 public class HomePage extends BaseClass {
-	WebDriver driver;
+	//WebDriver driver;
 	@FindBy(xpath = "//*[@id='login_Layer']/div[contains(text(),'Login')]")
 	WebElement lnkLogin;
-	public HomePage(WebDriver driver) throws IOException {		
-		this.driver = driver;			
+	public HomePage() throws IOException {		
+		//this.driver = driver;			
 		PageFactory.initElements(driver, this);		
 	}
 	

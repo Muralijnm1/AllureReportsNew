@@ -12,7 +12,8 @@ import com.AllureReports.Pages.HomePageAfterLogin;
 import com.AllureReports.Pages.LoginPage;
 import com.AllureReports.Utilities.BaseClass;
 import com.AllureReports.Utilities.ReadConfig;
-
+import com.AllureReports.Pages.EditProfilePage;
+import com.AllureReports.Pages.EditBasicDetailsPage;
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
@@ -29,14 +30,14 @@ public class LoginTest extends BaseClass {
 	@BeforeMethod
 	public void setUp() {
 		super.setUp();
-		this.driver = getDriver();
+		//this.driver = getDriver();
 		System.out.println("in BeforeMethod ");	
 		
 			closeAllPopups();
 			closeAllAlerts();
 			pageScrollUp();
 			wait(3000);
-			//pageScrollDown();
+			pageScrollDown();
 	}
 
 	/*@Severity(SeverityLevel.MINOR)
@@ -52,7 +53,7 @@ public class LoginTest extends BaseClass {
 	}*/
 
 	@Severity(SeverityLevel.BLOCKER)
-	@Test(priority = 2, description = "Verify login")
+	@Test(enabled=false,priority = 1, description = "Verify login")
 	@Description("Verify login with Valid Credentials........")
 	@Epic("EP001")
 	@Feature("Feature2: Login")
@@ -60,16 +61,44 @@ public class LoginTest extends BaseClass {
 	@Step("Verify login")
 	public void loginTest() throws InterruptedException, IOException {
 		
-		HomePage homePage = new HomePage(driver);
+		HomePage homePage = new HomePage();
 		homePage.clickOnLogin();
 		Thread.sleep(6000);
 		closeAllAlerts();
-		LoginPage loginPage = new LoginPage(driver);
+		LoginPage loginPage = new LoginPage();
 		loginPage.enterUserid(ReadConfig.getUsername());
-		loginPage.enterPassword(ReadConfig.getUsername());
+		loginPage.enterPassword(ReadConfig.getPassword());
 		loginPage.clickOnLogin();
-		HomePageAfterLogin homePageAfterLogin = new HomePageAfterLogin(driver);
+		HomePageAfterLogin homePageAfterLogin = new HomePageAfterLogin();
 		homePageAfterLogin.validateLogin();		
+	}
+
+	
+	@Severity(SeverityLevel.BLOCKER)
+	@Test(enabled=true,priority = 1, description = "Verify Profile Edit")
+	@Description("Verify Profile Edit........")
+	@Epic("EP001")
+	@Feature("Feature2: Profile Edit")
+	@Story("Story:Profile Edit")
+	@Step("Verify Profile Edit")
+	public void profileEditTest() throws InterruptedException, IOException {
+		
+		HomePage homePage = new HomePage();
+		homePage.clickOnLogin();
+		Thread.sleep(6000);
+		closeAllAlerts();
+		LoginPage loginPage = new LoginPage();
+		loginPage.enterUserid(ReadConfig.getUsername());
+		loginPage.enterPassword(ReadConfig.getPassword());
+		loginPage.clickOnLogin();
+		HomePageAfterLogin homePageAfterLogin = new HomePageAfterLogin();	
+		homePageAfterLogin.hoverOverOnMyNaukri();
+		//homePageAfterLogin.clickOnMyNaukri();
+		homePageAfterLogin.clickOnEditProfileOption();	
+		EditBasicDetailsPage editBasicDetailsPage = new EditBasicDetailsPage();
+		editBasicDetailsPage.clickOnSave();
+		EditProfilePage editProfilePage = new EditProfilePage();
+		editProfilePage.validateUpdate();	
 	}
 
 	/*@Severity(SeverityLevel.NORMAL)

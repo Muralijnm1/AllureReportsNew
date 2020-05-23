@@ -11,22 +11,30 @@ import com.AllureReports.Utilities.BaseClass;
 
 
 public class EditBasicDetailsPage extends BaseClass {
-	WebDriver driver;
+	//WebDriver driver;
 
 	@FindBy(xpath = "//button[@id='saveBasicDetailsBtn']")
 	WebElement btnSave;	
 	
 
-	public EditBasicDetailsPage(WebDriver driver) throws IOException {
+	public EditBasicDetailsPage() throws IOException {
 		//super();
-		this.driver = driver;
+		//this.driver = driver;
 		PageFactory.initElements(driver, this);
 		// TODO Auto-generated constructor stub
 	}
 
 	public void clickOnSave(){
 		//waitUntilElementVisible(btnSave);
+		try{
 		btnSave.click();
+		System.out.println("clicked on 'btnSave'");
+		
+		}catch(Exception e)
+		{
+			System.out.println("Not able to click on 'btnSave' "+this.getClass()+e.getMessage());
+			
+		}
 	}
 	
 }

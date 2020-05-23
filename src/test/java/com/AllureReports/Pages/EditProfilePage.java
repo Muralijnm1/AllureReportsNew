@@ -12,7 +12,7 @@ import com.AllureReports.Utilities.BaseClass;
 
 
 public class EditProfilePage extends BaseClass {
-	public WebDriver driver;
+	//public WebDriver driver;
 
 	@FindBy(xpath = "//em[@class='icon edit' and text()='Edit']")
 	WebElement iconEdit;	
@@ -20,12 +20,14 @@ public class EditProfilePage extends BaseClass {
 	@FindBy(xpath = "//div/span[text()='Profile Last updated']/following-sibling::span")
 	WebElement txtUpdateDate;	
 
-	public EditProfilePage(WebDriver driver) throws IOException {
+	public EditProfilePage() throws IOException {
 		//super();
-		//driver = TestBase.driver;
+		//this.driver = driver;
 		PageFactory.initElements(driver, this);
 		// TODO Auto-generated constructor stub
 	}
+
+	
 
 	public void clickOnEdit(){
 		//waitUntilElementClickable(iconEdit);
@@ -34,7 +36,7 @@ public class EditProfilePage extends BaseClass {
 	
 
 	public String getUpdateDate(){		
-		return smartWait(txtUpdateDate).getText();
+		return txtUpdateDate.getText();
 	}
 
 	

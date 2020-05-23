@@ -4,6 +4,8 @@ import java.time.Duration;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
+import java.util.logging.Logger;
+
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.JavascriptExecutor;
@@ -24,7 +26,7 @@ public class BaseClass {
 	public String baseURL=readconfig.getApplicationURL();
 	/*public String username=readconfig.getUsername();
 	public String password=readconfig.getPassword();*/
-	public WebDriver driver;
+	public static WebDriver driver;
 	
 	//public static Logger logger;
 	
@@ -52,7 +54,7 @@ public class BaseClass {
 			driver = new InternetExplorerDriver();
 		}
 		
-		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(60,TimeUnit.SECONDS);
 		driver.get(baseURL);
 		driver.manage().window().maximize();
 	}
