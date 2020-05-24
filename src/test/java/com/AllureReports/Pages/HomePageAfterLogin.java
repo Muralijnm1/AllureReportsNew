@@ -9,7 +9,6 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 
 import com.AllureReports.Utilities.BaseClass;
-import com.AllureReports.Utilities.ReadConfig;
 
 public class HomePageAfterLogin extends BaseClass {
 	//WebDriver driver;
@@ -54,21 +53,14 @@ public class HomePageAfterLogin extends BaseClass {
 		validateLogin();*/
 	}
 	
-	public void hoverOverOnMyNaukri(){
-		try{
+	public void hoverOverOnMyNaukri() throws InterruptedException{
+		Thread.sleep(60);
 		hoverOver(menuMyNaukri);
-		System.out.println("hoverOver on 'menuMyNaukri'");
-		}
-		catch(Exception e)
-		{
-			System.out.println("Not able to hoverOver on 'menuMyNaukri' "+this.getClass()+e.getMessage());
-
-		}
 	}
 	
 	public void clickOnMyNaukri(){
 		try{
-		menuMyNaukri.click();;
+		menuMyNaukri.click();
 		System.out.println("cliked on 'menuMyNaukri'");
 		}
 		catch(Exception e)
@@ -80,16 +72,12 @@ public class HomePageAfterLogin extends BaseClass {
 
 
 	public void clickOnEditProfileOption(){
+		clickOn(menuOptionEditProfile);	
 		
-		try{
-		menuOptionEditProfile.click();
-		System.out.println("clicked on 'menuOptionEditProfile'");
-		}
-		catch (Exception e)
-		{
-			System.out.println("Not able to click on 'menuOptionEditProfile' "+this.getClass()+e.getMessage());
-		}
 	}
+
+
+	
 	
 
 }

@@ -4,20 +4,21 @@ import java.time.Duration;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
-import java.util.logging.Logger;
-
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class BaseClass {
 
@@ -55,7 +56,9 @@ public class BaseClass {
 		}
 		
 		driver.manage().timeouts().implicitlyWait(60,TimeUnit.SECONDS);
-		driver.get(baseURL);
+		driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
+		driver.manage().deleteAllCookies();
+		driver.get(baseURL);		
 		driver.manage().window().maximize();
 	}
 	
@@ -87,15 +90,72 @@ public class BaseClass {
 		return (generatedString2);
 	}
 	
-	public void hoverOver(WebElement webElement) {
+	public void hoverOver(WebElement webElement) throws InterruptedException {
+		
+		//Thread.sleep(40);
+		WebElement webElement1=waitUntilClickable(webElement);
+				
+		try{
 		Actions builder = new Actions(driver);
-		Actions hoverOverRegister = builder.moveToElement(webElement);
-		hoverOverRegister.perform();
-
+		Actions hoverOverRegister = builder.moveToElement(webElement1);
+		hoverOverRegister.perform();		
+		System.out.println("\nhoverover performed on"+webElement.getText());
+		}catch(StaleElementReferenceException e)
+		{
+			System.out.println("\nnot able to hoverover performed on"+e.getMessage());
+		}
+				
+		Thread.sleep(30);
 	}
 
+	public  boolean isElementExist(WebElement webElement){
+		
+		if((webElement.getSize().getHeight())>0 && (webElement.getSize().getWidth())>0)
+		{ 			
+			System.out.println("The element does exist");
+			return true;
+		}
+		return false;	
+}
 	
-	  public WebElement smartWait(final WebElement webElement){
+	public  WebElement isElementExistWithElementReturn(WebElement webElement){
+		
+		if((webElement.getSize().getHeight())>0 && (webElement.getSize().getWidth())>0)
+		{ 			
+			System.out.println("The element does exist");
+			return webElement;
+		}
+		return webElement;	
+}
+	  
+	public WebElement waitUntilClickable(WebElement webElement){		
+		WebDriverWait wait = new WebDriverWait(driver, 60);
+		int count = 0;
+		try{
+			WebElement webElementExist=waitUntilElementExist(webElement);
+			WebElement webElementClickable = wait.until(ExpectedConditions.elementToBeClickable(webElementExist));
+		return webElementClickable;	
+	}catch(StaleElementReferenceException e)
+		{		
+		if(count==0){
+			WebElement webElementExist=waitUntilElementExist(webElement);
+			WebElement webElementClickable = wait.until(ExpectedConditions.elementToBeClickable(webElementExist));
+			count=+1;	
+			return webElementClickable;	
+		}
+		System.out.println("waitUntilClickable:"+webElement.getText()+" "+e.getMessage());
+		}
+		return null;
+	}
+	
+	public WebElement waitUntilElementExist(WebElement webElement){		
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+		WebElement webElement1 = (WebElement) wait.until(ExpectedConditions.visibilityOf(webElement));
+		return webElement1;	
+	}
+	
+	
+	public WebElement smartWait(final WebElement webElement){
 	  
 	 Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)							
 				.withTimeout(Duration.ofSeconds(100)) 			
@@ -210,6 +270,11 @@ public class BaseClass {
 		}catch(InterruptedException e){
 			System.out.println(e.getMessage());
 		}
+	}
+	
+	public void clickOn(WebElement webElement){
+		webElement = waitUntilClickable(webElement);
+		webElement.click();		
 	}
 	
 }
