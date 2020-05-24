@@ -30,7 +30,7 @@ public class EditProfilePage extends BaseClass {
 
 	public void clickOnEdit(){
 		//waitUntilElementClickable(iconEdit);
-		iconEdit.click();		
+		clickOn(iconEdit);		
 	}
 	
 

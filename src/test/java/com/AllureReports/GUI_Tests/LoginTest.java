@@ -93,11 +93,12 @@ public class LoginTest extends BaseClass {
 		loginPage.clickOnLogin();
 		HomePageAfterLogin homePageAfterLogin = new HomePageAfterLogin();	
 		homePageAfterLogin.hoverOverOnMyNaukri();
-		//homePageAfterLogin.clickOnMyNaukri();
-		homePageAfterLogin.clickOnEditProfileOption();	
+		homePageAfterLogin.clickOnEditProfileOption();
+		EditProfilePage editProfilePage = new EditProfilePage();
+		editProfilePage.clickOnEdit();
 		EditBasicDetailsPage editBasicDetailsPage = new EditBasicDetailsPage();
 		editBasicDetailsPage.clickOnSave();
-		EditProfilePage editProfilePage = new EditProfilePage();
+		//EditProfilePage editProfilePage = new EditProfilePage();
 		editProfilePage.validateUpdate();	
 	}
 
