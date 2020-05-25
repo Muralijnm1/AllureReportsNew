@@ -87,7 +87,7 @@ public class BaseClass {
 		return (generatedString2);
 	}
 
-	public void hoverOver(WebElement webElementHoverOver, WebElement webElementMenuEditOption)
+	public void hoverOverOnMenu(WebElement webElementHoverOver, WebElement webElementMenuEditOption)
 			throws InterruptedException {
 
 		// Thread.sleep(40);
@@ -164,8 +164,14 @@ public class BaseClass {
 		return null;
 	}
 
+	public void enterText(WebElement webElement, String txt) {
+		WebElement webElementExist = waitUntilElementExist(webElement);
+		webElementExist.clear();
+		webElementExist.sendKeys(txt);		
+	}
+	
 	public WebElement waitUntilElementExist(WebElement webElement) {
-		WebDriverWait wait = new WebDriverWait(driver, 10);
+		WebDriverWait wait = new WebDriverWait(driver, 60);
 		WebElement webElement1 = (WebElement) wait.until(ExpectedConditions.visibilityOf(webElement));
 		return webElement1;
 	}
