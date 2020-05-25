@@ -53,7 +53,7 @@ public class LoginTest extends BaseClass {
 	}*/
 
 	@Severity(SeverityLevel.BLOCKER)
-	@Test(enabled=false,priority = 1, description = "Verify login")
+	@Test(enabled=true,priority = 1, description = "Verify login")
 	@Description("Verify login with Valid Credentials........")
 	@Epic("EP001")
 	@Feature("Feature2: Login")
@@ -75,7 +75,7 @@ public class LoginTest extends BaseClass {
 
 	
 	@Severity(SeverityLevel.BLOCKER)
-	@Test(enabled=true,priority = 1, description = "Verify Profile Edit")
+	@Test(enabled=true,priority = 2, description = "Verify Profile Edit")
 	@Description("Verify Profile Edit........")
 	@Epic("EP001")
 	@Feature("Feature2: Profile Edit")
