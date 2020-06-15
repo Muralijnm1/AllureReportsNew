@@ -1,66 +1,123 @@
 package com.AllureReports.API_Tests;
-
 import static io.restassured.RestAssured.given;
-
-import java.util.ArrayList;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.isEmptyOrNullString;
+import static org.hamcrest.Matchers.hasItems;
 import java.util.HashMap;
 
+import org.junit.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import static org.hamcrest.Matchers.equalTo;
+
+import io.restassured.response.*;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
+public class APItestsEmployeeOperations {
 
-
-public class APItest3CucumberApproach {
 	
-	@BeforeClass
+	/*@BeforeClass
 	public void setUp() {
-		RestAssured.baseURI="http://restapi.demoqa.com";
-		RestAssured.basePath="/authentication/CheckForAuthentication";
+		RestAssured.baseURI="http://restapi.demoqa.com/authentication/CheckForAuthentication";
 		RestAssured.authentication=RestAssured.preemptive().basic("ToolsQA", "TestPassword");
-		//RestAssured.requestSpecification.accept("application/json");
-		given()
-		.when()
-		.get()
-		.then()
-		.assertThat()
-		.statusCode(200);
-		System.out.println("I am in Set up");
-		 }
+		
+		 }*/
 	
-
-	@Test(enabled = true,priority=1)
-	public void postRequest_createNewStudent() {
+	@Test(enabled = false,priority=1)
+	public void postRequest_createNewEmployee() {
 		
 		 HashMap map = new HashMap();
-		 map.put("id", 101);
-		 map.put("firstName", "Pavan1");
-		 map.put("email", "abc@gmail1.com");
-		 map.put("program", "Manager1");
-		 ArrayList<String> courseList = new ArrayList<String>();
-		 courseList.add("Java");
-		 courseList.add("Selenium");
-		 map.put("courses", courseList);
-		 
+		 map.put("first_name", "employee14_firstname");
+		 map.put("last_name", "employee14_firstname");		 
 		 given()
 		 		.contentType(ContentType.JSON)
 		 		.body(map)
 		 .when()
-		 		.post("http://Localhost:8085/student")
+		 		.post("http://localhost:3000/employee")
 		 .then()
 		 		.statusCode(201)
-		 		.assertThat();
-		 		//.body("msg", equals("student added"));		 		
-		 		
-		 		/*
-		 		.assertThat().body(containsString("something else"));
-		 		//body("msg",equals("student added"));
-		 		*/
+		 		.assertThat()		 		
+		 		//.root("employee")
+		 		//.body("first_name",hasItems("employee14_firstname"))
+		 		.body("first_name",equalTo("employee14_firstname"))
+		 		.body("last_name",equalTo("employee14_firstname"));
+		 }
+	@Test(enabled = false,priority=2)
+	public void getRequest_getEmployee() {
 		
-			}
-
+		 HashMap map = new HashMap();
+		 map.put("first_name", "employee14_firstname");
+		 map.put("last_name", "employee14_firstname");		 
+		 given()
+		 		.contentType(ContentType.JSON)
+		 		.body(map)
+		 .when()
+		 		.post("http://localhost:3000/employee/26")
+		 .then()
+		 		.statusCode(200)
+		 		.assertThat()		 		
+		 		//.root("employee")
+		 		//.body("first_name",hasItems("employee14_firstname"))
+		 		.body("first_name",equalTo("employee14_firstname"))
+		 		.body("last_name",equalTo("employee14_firstname"));
+		 }
+	@Test(enabled = false,priority=3)
+	public void putRequest_updateEmployee() {
+		
+		 HashMap map = new HashMap();
+		 map.put("first_name", "employee14_firstname");
+		 map.put("last_name", "employee14_firstname");		 
+		 given()
+		 		.contentType(ContentType.JSON)
+		 		.body(map)
+		 .when()
+		 		.post("http://localhost:3000/employee/3")
+		 .then()
+		 		.statusCode(201)
+		 		.assertThat()		 		
+		 		//.root("employee")
+		 		//.body("first_name",hasItems("employee14_firstname"))
+		 		.body("first_name",equalTo("employee14_firstname"))
+		 		.body("last_name",equalTo("employee14_firstname"));
+		 }
 	
+	@Test(enabled = false,priority=4)
+	public void patchRequest_patchEmployee() {
+		
+		 HashMap map = new HashMap();
+		 map.put("first_name", "employee14_firstname");
+		 map.put("last_name", "employee14_firstname");		 
+		 given()
+		 		.contentType(ContentType.JSON)
+		 		.body(map)
+		 .when()
+		 		.post("http://localhost:3000/employee/3")
+		 .then()
+		 		.statusCode(201)
+		 		.assertThat()		 		
+		 		//.root("employee")
+		 		//.body("first_name",hasItems("employee14_firstname"))		 		
+		 		.body("last_name",equalTo("employee14_firstname"));
+		 }
+	
+	@Test(enabled = true,priority=4)
+	public void deleteRequest_Employee() {
+		
+		 Response response = 
+		 given()
+		 			 		
+		 .when()
+		 		.delete("http://localhost:3000/employee/13")
+		 .then()
+		 		.statusCode(200)
+		 		//.assertThat()		 		
+		 		//.root("employee")
+		 		//.body("first_name",hasItems("employee14_firstname"))		 		
+		 		.extract().response();
+		 
+		 String jsonAsString=response.asString();
+		 System.out.println("The Json value "+jsonAsString);
+		 Assert.assertEquals("{}", jsonAsString);
+		 }
 	
 
 /*

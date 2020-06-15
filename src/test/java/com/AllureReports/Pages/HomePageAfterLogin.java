@@ -52,7 +52,7 @@ public class HomePageAfterLogin extends BaseClass {
 	}
 	
 	public void hoverOverOnMyNaukri() throws InterruptedException{
-		Thread.sleep(60);
+		Thread.sleep(6000);
 		hoverOverOnMenu(menuMyNaukri,menuOptionEditProfile);
 	}
 	

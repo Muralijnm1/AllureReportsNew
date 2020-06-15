@@ -25,7 +25,7 @@ import io.qameta.allure.Story;
 @Listeners({ com.AllureReports.ReportsGeneration.AllureListener.class })
 public class LoginTest extends BaseClass {
 
-	WebDriver driver;
+	//WebDriver driver;
 
 	@BeforeMethod
 	public void setUp() {
@@ -53,7 +53,7 @@ public class LoginTest extends BaseClass {
 	}*/
 
 	@Severity(SeverityLevel.BLOCKER)
-	@Test(enabled=true,priority = 1, description = "Verify login")
+	@Test(enabled=false,priority = 1, description = "Verify login")
 	@Description("Verify login with Valid Credentials........")
 	@Epic("EP001")
 	@Feature("Feature2: Login")

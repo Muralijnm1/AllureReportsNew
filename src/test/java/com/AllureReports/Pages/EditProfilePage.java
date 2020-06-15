@@ -44,9 +44,10 @@ public class EditProfilePage extends BaseClass {
 		//HomePageAfterLogin homePageAfterLogin = new HomePageAfterLogin();
 		String actual = getUpdateDate();
 		// String actual = "success";
-		String expected = "today";
+		String expected = "day";
+		
 
-		Assert.assertEquals(actual, expected);
+		Assert.assertTrue(actual.contains(expected));
 		System.out.println("Actual  " + actual + " \nExpected  " + expected + "\n  Test passed");
 	}
 	

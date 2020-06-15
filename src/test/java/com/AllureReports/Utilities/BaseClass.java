@@ -98,7 +98,7 @@ public class BaseClass {
 			Actions hoverOverRegister = builder.moveToElement(webElementClickable);
 			hoverOverRegister.perform();
 			if (isElementExist(webElementMenuEditOption)) {
-				System.out.println("\nhoverover performed on " + webElementHoverOver.getText());
+				System.out.println("\n 1st time hoverover performed on " + webElementHoverOver.getText());
 				return;
 			}
 		} catch (StaleElementReferenceException e) {
@@ -107,7 +107,7 @@ public class BaseClass {
 				Actions hoverOverRegister = builder.moveToElement(webElementClickable);
 				hoverOverRegister.perform();
 				if (isElementExist(webElementMenuEditOption)) {
-				System.out.println("\nhoverover performed on " + webElementHoverOver.getText());
+				System.out.println("\n 2nd time hoverover performed on " + webElementHoverOver.getText());
 				}
 				count=+1;
 				return;
@@ -124,7 +124,7 @@ public class BaseClass {
 			}
 		}
 
-		Thread.sleep(30);
+		Thread.sleep(50);
 	}
 
 	public boolean isElementExist(WebElement webElement) {

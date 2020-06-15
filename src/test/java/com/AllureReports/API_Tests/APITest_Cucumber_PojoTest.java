@@ -11,7 +11,7 @@ import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 
 
-public class APITest_Cucumber {
+public class APITest_Cucumber_PojoTest {
   @Test(enabled=false)
   public void getWeatherTest() {
 	  given()
@@ -72,6 +72,7 @@ public class APITest_Cucumber {
 	  
 	  GoogleAPI gAPI =  get("https://www.googleapis.com/oauth2/v3/certs").as(GoogleAPI.class);
 	  System.out.println(gAPI.getKeys().size());
+	  gAPI.display();
 	  System.out.println(gAPI.getKeys().get(0).getAlg());
   }
 }
