@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="3" name="Suite" parallel="methods">
+  <test name="Regression" priority="1">
+    <classes>
+<!--       <class name="com.AllureReports.GUI_Tests.Test2"/>
+      <class name="com.AllureReports.GUI_Tests.LoginTest"/> -->
+      <class name="com.AllureReports.GUI_Tests.LoginTest1"/>
+      <!-- <class name="com.AllureReports.API_Tests.APItestsEmployeeOperations"/> -->
+      <!-- <class name="com.AllureReports.API_Tests.APItest3CucumberApproach"/> -->
+    </classes>
+  </test> <!-- Generate Allure report -->    
+    <test name="Allure Report Generation" priority="2">
+    <classes>
+      <class name="com.AllureReports.ReportsGeneration.GenerateAllureReport"/>
+    </classes>
+  </test> <!-- Allure Report Generation -->   
+</suite> <!-- Suite -->

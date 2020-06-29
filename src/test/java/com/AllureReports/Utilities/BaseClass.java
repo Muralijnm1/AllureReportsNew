@@ -1,11 +1,13 @@
 package com.AllureReports.Utilities;
 
+import java.io.IOException;
 import java.time.Duration;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.StaleElementReferenceException;
@@ -51,11 +53,10 @@ public class BaseClass {
 			System.setProperty("webdriver.ie.driver", readconfig.getIEPath());
 			driver = new InternetExplorerDriver();
 		}
-
 		driver.get(baseURL);
 		driver.manage().deleteAllCookies();
 		driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-		driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 
 	}
@@ -64,8 +65,11 @@ public class BaseClass {
 		return driver;
 	}
 
-	public void tearDown() {
+	public void tearDown() throws IOException {
 		driver.quit();
+		// Runtime.getRuntime().exec("cmd /c start
+		// F://GitRepository//AllureReports22Apr2020//src//test//java//com//AllureReports//Resources//MavenTestRun.bat");
+
 	}
 
 	/*
@@ -107,9 +111,9 @@ public class BaseClass {
 				Actions hoverOverRegister = builder.moveToElement(webElementClickable);
 				hoverOverRegister.perform();
 				if (isElementExist(webElementMenuEditOption)) {
-				System.out.println("\n 2nd time hoverover performed on " + webElementHoverOver.getText());
+					System.out.println("\n 2nd time hoverover performed on " + webElementHoverOver.getText());
 				}
-				count=+1;
+				count = +1;
 				return;
 			} else {
 				System.out.println("\nnot able to hoverover performed on" + e.getMessage());
@@ -149,12 +153,12 @@ public class BaseClass {
 		WebDriverWait wait = new WebDriverWait(driver, 60);
 		int count = 0;
 		try {
-			WebElement webElementExist = waitUntilElementExist(webElement);
+			WebElement webElementExist = waitUntilElementVisible(webElement);
 			WebElement webElementClickable = wait.until(ExpectedConditions.elementToBeClickable(webElementExist));
 			return webElementClickable;
 		} catch (StaleElementReferenceException e) {
 			if (count == 0) {
-				WebElement webElementExist = waitUntilElementExist(webElement);
+				WebElement webElementExist = waitUntilElementVisible(webElement);
 				WebElement webElementClickable = wait.until(ExpectedConditions.elementToBeClickable(webElementExist));
 				count = +1;
 				return webElementClickable;
@@ -165,25 +169,56 @@ public class BaseClass {
 	}
 
 	public void enterText(WebElement webElement, String txt) {
-		WebElement webElementExist = waitUntilElementExist(webElement);
+		WebElement webElementExist=null;
+		try {
+			webElementExist = waitUntilElementVisible(webElement);
+		} catch (NoSuchElementException e) {
+			System.out.println("The Element is " + webElement.getText() + "not visible" + e.getMessage());
+			return;
+		} catch (TimeoutException e) {
+				System.out.println("Time out exception : the Element " + webElement.getText() + "Not visible" + e.getMessage());
+				return;
+			}
 		webElementExist.clear();
-		webElementExist.sendKeys(txt);		
-	}
-	
-	public WebElement waitUntilElementExist(WebElement webElement) {
-		WebDriverWait wait = new WebDriverWait(driver, 60);
-		WebElement webElement1 = (WebElement) wait.until(ExpectedConditions.visibilityOf(webElement));
-		return webElement1;
+		webElementExist.sendKeys(txt);
 	}
 
-	public WebElement smartWait(final WebElement webElement) {
+	public WebElement waitUntilElementVisible(WebElement webElement){
+		WebElement webElementExist=null;
+		WebDriverWait wait = new WebDriverWait(driver, 30); 	
+		try{
+			webElementExist = (WebElement) wait.until(ExpectedConditions.visibilityOf(webElement));		 		
+		 	
+		}catch(NoSuchElementException e){		 		
+		 		throw e;
+		 	}
+		return webElementExist;	
+			
+	}
 
-		Wait<WebDriver> wait = new FluentWait<WebDriver>(driver).withTimeout(Duration.ofSeconds(100))
-				.pollingEvery(Duration.ofMillis(10)).ignoring(NoSuchElementException.class);
-		WebElement element = wait.until(new Function<WebDriver, WebElement>() {
+	public WebElement fluentWait(WebDriver driver,String xpath) {	
+		
+		//WebElement webElement = driver.findElement(By.xpath(xpath));
+		
+			System.out.println("The Element displayed "+xpath);
+					
+		Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+				.withTimeout(Duration.ofSeconds(100))
+				.pollingEvery(Duration.ofSeconds(3))
+				.ignoring(NoSuchElementException.class)
+				.ignoring(StaleElementReferenceException.class);		
+				
+		WebElement element = wait.until(new Function<WebDriver, WebElement >() {
 
 			public WebElement apply(WebDriver driver) {
-				return webElement;
+				//WebDriver driver1 = getDriver();
+				WebElement webElement1=driver.findElement(By.xpath(xpath));
+				if (webElement1.isDisplayed()){
+					System.out.println("Yes The Element displayed "+xpath);
+				}
+					
+				return (webElement1);
+				
 			}
 		});
 		return element;

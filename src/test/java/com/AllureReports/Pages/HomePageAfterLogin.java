@@ -9,7 +9,6 @@ import org.testng.Assert;
 import com.AllureReports.Utilities.BaseClass;
 
 public class HomePageAfterLogin extends BaseClass {
-	//WebDriver driver;
 
 	@FindBy(xpath = "//div[contains(@title,'Murali')]")
 	WebElement txtUserName;
@@ -21,8 +20,6 @@ public class HomePageAfterLogin extends BaseClass {
 	WebElement menuOptionEditProfile;
 
 	public HomePageAfterLogin() throws IOException {
-		//super();
-		//this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
 
@@ -52,7 +49,11 @@ public class HomePageAfterLogin extends BaseClass {
 	}
 	
 	public void hoverOverOnMyNaukri() throws InterruptedException{
-		Thread.sleep(6000);
+		//WebElement menuMyNaukri=null;
+		//Thread.sleep(6000);
+		String xpath = "//div[text()='My Naukri']";
+		menuMyNaukri= fluentWait(driver,xpath);
+		//waitUntilElementVisible(menuMyNaukri);
 		hoverOverOnMenu(menuMyNaukri,menuOptionEditProfile);
 	}
 	
@@ -63,7 +64,7 @@ public class HomePageAfterLogin extends BaseClass {
 		}
 		catch(Exception e)
 		{
-			System.out.println("Not able to click on 'menuMyNaukri' "+this.getClass()+e.getMessage());
+			System.out.println("Not able to click on 'menuMyNaukri' \n"+this.getClass().toString()+e.getMessage());
 
 		}
 	}

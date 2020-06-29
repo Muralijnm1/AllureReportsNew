@@ -115,7 +115,7 @@ public class LoginTest extends BaseClass {
 	}
 */
 	@AfterMethod
-	public void tearDown() {
+	public void tearDown() throws IOException {
 		super.tearDown();
 		//driver.quit();
 	}

@@ -9,7 +9,6 @@ import com.AllureReports.Utilities.BaseClass;
 
 public class LoginPage extends BaseClass {
 
-	// WebDriver driver;
 	@FindBy(xpath = "//input[contains(@placeholder,'active Email ID')]")
 	WebElement txboxUserid;
 
@@ -27,14 +26,14 @@ public class LoginPage extends BaseClass {
 		enterText(txboxUserid,userId);
 	}
 
-	
-
 	public void enterPassword(String password) {
 		enterText(txboxPassword,password);
 	}
 
-	public void clickOnLogin() {
+	public void clickOnLogin() throws InterruptedException {
 		clickOn(btnLogin);
+		//Thread.sleep(30000);
+		
 	}
 
 }

@@ -39,12 +39,21 @@ public class APItestsEmployeeOperations {
 	public void postRequest_createNewEmployee() {
 		RestAssured.basePath = "/employee";
 		HashMap map = new HashMap();
-		map.put("first_name", "employee14_firstname");
-		map.put("last_name", "employee14_lastname");
+		map.put("first_name", "employee16_firstname");
+		map.put("last_name", "employee16_lastname");
 
-		Response resp = given().contentType(ContentType.JSON).body(map).when().post().then().statusCode(201)
-				.assertThat().body("first_name", equalTo("employee14_firstname"))
-				.body("last_name", equalTo("employee14_lastname")).extract().response();
+		Response resp = given()
+				.contentType(ContentType.JSON)
+				.body(map)
+				.when()
+				.post()
+				.then()
+				.statusCode(201)
+				.assertThat()
+				.body("first_name", equalTo("employee16_firstname"))
+				.body("last_name", equalTo("employee16_lastname"))
+				.extract()
+				.response();
 		resp.prettyPrint();
 		JsonPath extractor = resp.jsonPath();
 		id = extractor.get("id");
@@ -59,8 +68,14 @@ public class APItestsEmployeeOperations {
 	@Step("Verify Empolyee retrive")	
 	public void getRequest_getEmployee() {
 		RestAssured.basePath = "employee/" + id;
-		given().when().get().then().statusCode(200).assertThat().body("first_name", equalTo("employee14_firstname"))
-				.body("last_name", equalTo("employee14_lastname"));
+		given()
+		.when()
+		.get()
+		.then()
+		.statusCode(200)
+		.assertThat()
+		.body("first_name", equalTo("employee16_firstname"))
+		.body("last_name", equalTo("employee16_lastname"));
 	}
 
 	@Severity(SeverityLevel.BLOCKER)
@@ -73,10 +88,18 @@ public class APItestsEmployeeOperations {
 	public void putRequest_updateEmployee() {
 		RestAssured.basePath = "employee/" + id;
 		HashMap map = new HashMap();
-		map.put("first_name", "employee15_firstname");
-		map.put("last_name", "employee15_lastname");
-		given().contentType(ContentType.JSON).body(map).when().put().then().statusCode(200).assertThat()
-				.body("first_name", equalTo("employee15_firstname")).body("last_name", equalTo("employee15_lastname"));
+		map.put("first_name", "employee16_firstname");
+		map.put("last_name", "employee16_lastname");
+		given()
+		.contentType(ContentType.JSON)
+		.body(map)
+		.when()
+		.put()
+		.then()
+		.statusCode(200)
+		.assertThat()
+		.body("first_name", equalTo("employee16_firstname"))
+		.body("last_name", equalTo("employee16_lastname"));
 	}
 	
 	@Severity(SeverityLevel.BLOCKER)
@@ -89,14 +112,22 @@ public class APItestsEmployeeOperations {
 	public void patchRequest_patchEmployee() {
 		RestAssured.basePath = "employee/" + id;
 		HashMap map = new HashMap();
-		map.put("first_name", "employee16_firstname");
-		given().contentType(ContentType.JSON).body(map).when().patch().then().statusCode(200).assertThat()
-				.body("first_name", equalTo("employee16_firstname")).body("last_name", equalTo("employee15_lastname"));
+		map.put("first_name", "employee17_firstname");
+		given()
+		.contentType(ContentType.JSON)
+		.body(map)
+		.when()
+		.patch()
+		.then()
+		.statusCode(200)
+		.assertThat()
+		.body("first_name", equalTo("employee17_firstname"))
+		.body("last_name", equalTo("employee16_lastname"));
 	}
 
 
 	@Severity(SeverityLevel.BLOCKER)
-	@Test(enabled=true,priority = 5, description = "Delte empolyee")
+	@Test(enabled=true,priority = 5, description = "Delete empolyee")
 	@Description("Patch empolyee........")
 	@Epic("EP001")
 	@Feature("Feature4: empolyee delete")
@@ -105,8 +136,12 @@ public class APItestsEmployeeOperations {
 	public void deleteRequest_Employee() {
 		RestAssured.basePath = "employee/" + id;
 		Response response = given()
-
-				.when().delete().then().statusCode(200).extract().response();
+				.when()
+				.delete()
+				.then()
+				.statusCode(200)
+				.extract()
+				.response();
 
 		String jsonAsString = response.asString();
 		System.out.println("The Json value " + jsonAsString);
