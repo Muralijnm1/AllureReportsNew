@@ -1,5 +1,7 @@
 package com.AllureReports.GUI_Tests;
 
+import java.io.IOException;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
@@ -73,7 +75,7 @@ public class Test2 extends BaseClass {
 	}
 
 	@AfterMethod
-	public void tearDown() {
+	public void tearDown() throws IOException {
 		super.tearDown();
 		//driver.quit();
 	}

@@ -91,10 +91,18 @@ public class BaseClass {
 		return (generatedString2);
 	}
 
+	public void checkElementExist(WebElement webElement) {
+		try {
+			webElement.isDisplayed();
+			return;
+		} catch (NoSuchElementException e) {
+			System.out.println("\n ########## The element not found ########## \n" + e.getMessage());
+		}
+		return;
+	}
+
 	public void hoverOverOnMenu(WebElement webElementHoverOver, WebElement webElementMenuEditOption)
 			throws InterruptedException {
-
-		// Thread.sleep(40);
 		WebElement webElementClickable = waitUntilClickable(webElementHoverOver);
 		int count = 0;
 		try {
@@ -164,61 +172,63 @@ public class BaseClass {
 				return webElementClickable;
 			}
 			System.out.println("waitUntilClickable:" + webElement.getText() + " " + e.getMessage());
+		} catch (TimeoutException e) {
+			System.out.println("Time out in element visible \n" + webElement.getText() + " " + e.getMessage());
 		}
 		return null;
 	}
 
 	public void enterText(WebElement webElement, String txt) {
-		WebElement webElementExist=null;
+		WebElement webElementExist = null;
 		try {
 			webElementExist = waitUntilElementVisible(webElement);
 		} catch (NoSuchElementException e) {
 			System.out.println("The Element is " + webElement.getText() + "not visible" + e.getMessage());
 			return;
 		} catch (TimeoutException e) {
-				System.out.println("Time out exception : the Element " + webElement.getText() + "Not visible" + e.getMessage());
-				return;
-			}
+			System.out.println(
+					"Time out exception : the Element " + webElement.getText() + "Not visible" + e.getMessage());
+			return;
+		}
 		webElementExist.clear();
 		webElementExist.sendKeys(txt);
 	}
 
-	public WebElement waitUntilElementVisible(WebElement webElement){
-		WebElement webElementExist=null;
-		WebDriverWait wait = new WebDriverWait(driver, 30); 	
-		try{
-			webElementExist = (WebElement) wait.until(ExpectedConditions.visibilityOf(webElement));		 		
-		 	
-		}catch(NoSuchElementException e){		 		
-		 		throw e;
-		 	}
-		return webElementExist;	
-			
+	public WebElement waitUntilElementVisible(WebElement webElement) {
+		WebElement webElementExist = null;
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		try {
+			webElementExist = (WebElement) wait.until(ExpectedConditions.visibilityOf(webElement));
+
+		} catch (NoSuchElementException e) {
+			throw e;
+		} catch (TimeoutException e) {
+			throw e;
+		}
+		return webElementExist;
+
 	}
 
-	public WebElement fluentWait(WebDriver driver,String xpath) {	
-		
-		//WebElement webElement = driver.findElement(By.xpath(xpath));
-		
-			System.out.println("The Element displayed "+xpath);
-					
-		Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-				.withTimeout(Duration.ofSeconds(100))
-				.pollingEvery(Duration.ofSeconds(3))
-				.ignoring(NoSuchElementException.class)
-				.ignoring(StaleElementReferenceException.class);		
-				
-		WebElement element = wait.until(new Function<WebDriver, WebElement >() {
+	public WebElement fluentWait(WebDriver driver, String xpath) {
+
+		// WebElement webElement = driver.findElement(By.xpath(xpath));
+
+		System.out.println("The Element displayed " + xpath);
+
+		Wait<WebDriver> wait = new FluentWait<WebDriver>(driver).withTimeout(Duration.ofSeconds(100))
+				.pollingEvery(Duration.ofSeconds(3)).ignoring(NoSuchElementException.class)
+				.ignoring(StaleElementReferenceException.class);
+
+		WebElement element = wait.until(new Function<WebDriver, WebElement>() {
 
 			public WebElement apply(WebDriver driver) {
-				//WebDriver driver1 = getDriver();
-				WebElement webElement1=driver.findElement(By.xpath(xpath));
-				if (webElement1.isDisplayed()){
-					System.out.println("Yes The Element displayed "+xpath);
+				WebElement webElement1 = driver.findElement(By.xpath(xpath));
+				if (webElement1.isDisplayed()) {
+					System.out.println("Yes The Element displayed " + xpath);
 				}
-					
+
 				return (webElement1);
-				
+
 			}
 		});
 		return element;
@@ -244,7 +254,7 @@ public class BaseClass {
 			if (i == 1) {
 				driver.switchTo().window((String) a[i]);
 				System.out.println(driver.getTitle());
-				// driver.close();
+				driver.close();
 			}
 		}
 		/*
@@ -260,7 +270,7 @@ public class BaseClass {
 		try {
 			Alert alert = driver.switchTo().alert();
 			String alertText = alert.getText();
-			System.out.println(alertText);
+			System.out.println("The alert present is " + alertText);
 			alert.dismiss();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -327,5 +337,4 @@ public class BaseClass {
 		webElement = waitUntilClickable(webElement);
 		webElement.click();
 	}
-
 }

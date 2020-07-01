@@ -24,27 +24,25 @@ public class EditProfilePage extends BaseClass {
 
 	public void clickOnEdit() throws InterruptedException {
 		WebElement iconEditAfterWait=null; 
-		Thread.sleep(20000);
+		//Thread.sleep(20000);
 		try{
 			iconEditAfterWait=waitUntilElementVisible(iconEdit);
 			iconEditAfterWait.click();			
 		}catch(NoSuchElementException e){
 			System.out.println("The Element not found in DOM \n"+this.getClass().toString()+"\n"+e.getMessage());	
 		}
-		
-		//clickOn(iconEdit);
 	}
 
 	public String getUpdateDate() {
+		checkElementExist(txtUpdateDate);
 		return txtUpdateDate.getText();
 	}
 
-	public void validateUpdate() {
-		// HomePageAfterLogin homePageAfterLogin = new HomePageAfterLogin();
+	public void validateUpdate() throws IOException {
+		//HomePageAfterLogin homePageAfterLogin = new HomePageAfterLogin();
 		String actual = getUpdateDate();
 		// String actual = "success";
 		String expected = "day";
-
 		Assert.assertTrue(actual.contains(expected));
 		System.out.println("Actual  " + actual + " \nExpected  " + expected + "\n  Test passed");
 	}

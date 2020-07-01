@@ -12,10 +12,10 @@ public class HomePageAfterLogin extends BaseClass {
 
 	@FindBy(xpath = "//div[contains(@title,'Murali')]")
 	WebElement txtUserName;
-	
+
 	@FindBy(xpath = "//div[text()='My Naukri']")
 	WebElement menuMyNaukri;
-	
+
 	@FindBy(xpath = "//a[@title='Edit Profile']")
 	WebElement menuOptionEditProfile;
 
@@ -23,13 +23,12 @@ public class HomePageAfterLogin extends BaseClass {
 		PageFactory.initElements(driver, this);
 	}
 
-	
-	public String getUserName(){
+	public String getUserName() {
 		return txtUserName.getText();
 	}
-	
-	public void validateLogin(){
-		//HomePageAfterLogin homePageAfterLogin = new HomePageAfterLogin();
+
+	public void validateLogin() {
+		// HomePageAfterLogin homePageAfterLogin = new HomePageAfterLogin();
 		String actual = getUserName();
 		// String actual = "success";
 		String expected = "Murali";
@@ -37,46 +36,34 @@ public class HomePageAfterLogin extends BaseClass {
 		Assert.assertEquals(actual, expected);
 		System.out.println("Actual  " + actual + " \nExpected  " + expected + "\n  Test passed");
 	}
-	
-	public void loginSuccessfull() throws IOException, InterruptedException{
-	/*	HomePage homePage = new HomePage(driver);
-		homePage.clickOnLogin();
-		LoginPage loginPage = new LoginPage(driver);
-		loginPage.enterUserid(ReadConfig.getUsername());
-		loginPage.enterPassword(ReadConfig.getPassword());
-		loginPage.clickOnLogin();
-		validateLogin();*/
+
+	public void loginSuccessfull() throws IOException, InterruptedException {
+		/*
+		 * HomePage homePage = new HomePage(driver); homePage.clickOnLogin();
+		 * LoginPage loginPage = new LoginPage(driver);
+		 * loginPage.enterUserid(ReadConfig.getUsername());
+		 * loginPage.enterPassword(ReadConfig.getPassword());
+		 * loginPage.clickOnLogin(); validateLogin();
+		 */
 	}
-	
-	public void hoverOverOnMyNaukri() throws InterruptedException{
-		//WebElement menuMyNaukri=null;
-		//Thread.sleep(6000);
+
+	public void hoverOverOnMyNaukri() throws InterruptedException {
+		// WebElement menuMyNaukri=null;
+		// Thread.sleep(6000);
 		String xpath = "//div[text()='My Naukri']";
-		menuMyNaukri= fluentWait(driver,xpath);
-		//waitUntilElementVisible(menuMyNaukri);
-		hoverOverOnMenu(menuMyNaukri,menuOptionEditProfile);
+		menuMyNaukri = fluentWait(driver, xpath);
+		// waitUntilElementVisible(menuMyNaukri);
+		hoverOverOnMenu(menuMyNaukri, menuOptionEditProfile);
 	}
-	
-	public void clickOnMyNaukri(){
-		try{
-		menuMyNaukri.click();
+
+	public void clickOnMyNaukri() {
+		checkElementExist(menuMyNaukri);
+		clickOn(menuMyNaukri);	
 		System.out.println("cliked on 'menuMyNaukri'");
-		}
-		catch(Exception e)
-		{
-			System.out.println("Not able to click on 'menuMyNaukri' \n"+this.getClass().toString()+e.getMessage());
-
-		}
 	}
 
-
-	public void clickOnEditProfileOption(){
-		clickOn(menuOptionEditProfile);	
-		
+	public void clickOnEditProfileOption() {
+		checkElementExist(menuOptionEditProfile);
+		clickOn(menuOptionEditProfile);
 	}
-
-
-	
-	
-
 }

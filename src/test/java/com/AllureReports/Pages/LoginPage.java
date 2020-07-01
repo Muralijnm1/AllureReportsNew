@@ -1,5 +1,4 @@
 package com.AllureReports.Pages;
-
 import java.io.IOException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -19,21 +18,21 @@ public class LoginPage extends BaseClass {
 	WebElement btnLogin;
 
 	public LoginPage() throws IOException {
-		PageFactory.initElements(driver, this);
+		PageFactory.initElements(driver, this);		
 	}
 
-	public void enterUserid(String userId) {
-		enterText(txboxUserid,userId);
+	public void enterUserid(String userId) {	
+		checkElementExist(txboxUserid);
+		enterText(txboxUserid,userId);			
 	}
 
 	public void enterPassword(String password) {
+		checkElementExist(txboxPassword);
 		enterText(txboxPassword,password);
 	}
 
 	public void clickOnLogin() throws InterruptedException {
-		clickOn(btnLogin);
-		//Thread.sleep(30000);
-		
-	}
-
+		checkElementExist(btnLogin);		
+		clickOn(btnLogin);		
+	}	
 }

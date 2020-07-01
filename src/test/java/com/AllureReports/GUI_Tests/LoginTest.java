@@ -2,6 +2,7 @@ package com.AllureReports.GUI_Tests;
 
 import java.io.IOException;
 
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -84,13 +85,12 @@ public class LoginTest extends BaseClass {
 	public void profileEditTest() throws InterruptedException, IOException {
 		
 		HomePage homePage = new HomePage();
-		homePage.clickOnLogin();
-		Thread.sleep(6000);
+		homePage.clickOnLogin();		
 		closeAllAlerts();
 		LoginPage loginPage = new LoginPage();
 		loginPage.enterUserid(ReadConfig.getUsername());
 		loginPage.enterPassword(ReadConfig.getPassword());
-		loginPage.clickOnLogin();
+		loginPage.clickOnLogin();		
 		HomePageAfterLogin homePageAfterLogin = new HomePageAfterLogin();	
 		homePageAfterLogin.hoverOverOnMyNaukri();
 		homePageAfterLogin.clickOnEditProfileOption();
@@ -115,9 +115,8 @@ public class LoginTest extends BaseClass {
 	}
 */
 	@AfterMethod
-	public void tearDown() throws IOException {
-		super.tearDown();
-		//driver.quit();
+	public void tearDown() throws IOException {		
+		super.tearDown();	
 	}
 
 }
