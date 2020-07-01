@@ -1,7 +1,10 @@
 package com.AllureReports.Utilities;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.time.Duration;
+import java.util.Properties;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
@@ -24,33 +27,36 @@ import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class BaseClass {
-
-	ReadConfig readconfig = new ReadConfig();
-
-	public String baseURL = readconfig.getApplicationURL();
-	/*
-	 * public String username=readconfig.getUsername(); public String
-	 * password=readconfig.getPassword();
-	 */
+	
+	public static Properties properties = new Properties();
+	public String baseURL;
 	public static WebDriver driver;
-
 	// public static Logger logger;
 
 	public void setUp() {
-
-		String br = readconfig.getBrowser();
+		
+		File src = new File(System.getProperty("user.dir")+"//src//test//java//com//AllureReports//Configuration//config.properties");
+		try {
+			FileInputStream fis = new FileInputStream(src);			
+			properties.load(fis);
+		} catch (Exception e) {
+			System.out.println("Exception is " + e.getMessage());
+		}
+		
+		String br = properties.getProperty("browser");
+		baseURL = properties.getProperty("baseURL");
 		// logger = Logger.getLogger("ebanking");
 		// PropertyConfigurator.configure("Log4j.properties");
 
 		if (br.equals("chrome")) {
-			System.setProperty("webdriver.chrome.driver", readconfig.getChromePath());
+			System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir")+properties.getProperty("chromepath"));
 			System.out.println("The chrome path is " + System.getProperty("webdriver.chrome.driver"));
 			driver = new ChromeDriver();
 		} else if (br.equals("firefox")) {
-			System.setProperty("webdriver.gecko.driver", readconfig.getFirefoxPath());
+			System.setProperty("webdriver.gecko.driver", properties.getProperty("firefoxpath"));
 			driver = new FirefoxDriver();
 		} else if (br.equals("ie")) {
-			System.setProperty("webdriver.ie.driver", readconfig.getIEPath());
+			System.setProperty("webdriver.ie.driver", properties.getProperty("iepath"));
 			driver = new InternetExplorerDriver();
 		}
 		driver.get(baseURL);
@@ -58,7 +64,6 @@ public class BaseClass {
 		driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
-
 	}
 
 	public WebDriver getDriver() {
@@ -210,9 +215,6 @@ public class BaseClass {
 	}
 
 	public WebElement fluentWait(WebDriver driver, String xpath) {
-
-		// WebElement webElement = driver.findElement(By.xpath(xpath));
-
 		System.out.println("The Element displayed " + xpath);
 
 		Wait<WebDriver> wait = new FluentWait<WebDriver>(driver).withTimeout(Duration.ofSeconds(100))

@@ -9,10 +9,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-
 import com.AllureReports.Utilities.BaseClass;
-import com.AllureReports.Utilities.ReadConfig;
-
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
@@ -53,9 +50,9 @@ public class Test2 extends BaseClass {
 	@Step("Verify login")
 	public void loginTest() throws InterruptedException {
 		driver.findElement(By.linkText("Log in")).click();	
-		System.out.println(ReadConfig.getUsername());
-		driver.findElement(By.id("Email")).sendKeys(ReadConfig.getUsername());
-		driver.findElement(By.id("Password")).sendKeys(ReadConfig.getPassword());
+		System.out.println(properties.getProperty("username"));
+		driver.findElement(By.id("Email")).sendKeys(properties.getProperty("username"));
+		driver.findElement(By.id("Password")).sendKeys(properties.getProperty("password"));
 		driver.findElement(By.xpath("//input[@class='button-1 login-button']")).click();
 		Thread.sleep(3000);
 		Assert.assertEquals(driver.getTitle(), "nopCommerce demo store");
@@ -77,7 +74,6 @@ public class Test2 extends BaseClass {
 	@AfterMethod
 	public void tearDown() throws IOException {
 		super.tearDown();
-		//driver.quit();
 	}
 
 }
