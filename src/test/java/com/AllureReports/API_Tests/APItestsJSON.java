@@ -5,7 +5,11 @@ import static org.hamcrest.Matchers.equalTo;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-
+import java.util.Properties;
+import java.io.File;
+import java.io.IOException;
+import java.sql.*;
+/*import java.util.Properties;*/
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.junit.Assert;
@@ -13,6 +17,17 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+import com.AllureReports.Resources.EmployeeDetails;
+import com.AllureReports.Utilities.BaseClass;
+import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import io.qameta.allure.Description;
@@ -28,12 +43,13 @@ import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 
 @Listeners({ com.AllureReports.ReportsGeneration.AllureListener.class })
-public class APItestsEmployeeOperations {
+public class APItestsJSON extends BaseClass {
 
 	public static Integer id = null;
 
 	@BeforeClass
 	public void setUp() {
+		super.setUp_API();
 		RestAssured.baseURI = "http://localhost:3000";
 	}
 
@@ -72,7 +88,7 @@ public class APItestsEmployeeOperations {
 	}
 
 	@Severity(SeverityLevel.BLOCKER)
-	@Test(enabled = true, priority = 2, description = "Retrive empolyees")
+	@Test(enabled = false, priority = 2, description = "Retrive empolyees")
 	@Description("Retrive empolyees created........")
 	@Epic("EP001")
 	@Feature("Feature2: empolyees Retrive")
@@ -80,14 +96,7 @@ public class APItestsEmployeeOperations {
 	@Step("Verify Empolyees retrive")
 	public void getRequest_getEmployees() {
 		RestAssured.basePath = "employee/";
-		Response resp = 
-				given()
-				.when()
-				.get()
-				.then()
-				.statusCode(200)
-				.extract()
-				.response();
+		Response resp = given().when().get().then().statusCode(200).extract().response();
 		String jsonAsString = resp.asString();
 		JsonPath jp = resp.jsonPath();
 		System.out.println(jp.prettyPrint());
@@ -154,4 +163,48 @@ public class APItestsEmployeeOperations {
 		Assert.assertEquals("{}", jsonAsString);
 	}
 
+	@Severity(SeverityLevel.BLOCKER)
+	@Test(enabled = true, priority = 5, description = "Create empolyee JSON")
+	@Description("Create empolyee JSON.....")
+	@Epic("EP001")
+	@Feature("Feature4: empolyee JSON")
+	@Story("Story:Empolyee JSON")
+	@Step("Verify Empolyee JSON")
+	public void creat_Employee_JSON()
+			throws ClassNotFoundException, JsonGenerationException, JsonMappingException, IOException {
+
+		Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+		// String databaseURL =
+		// "jdbc:ucanaccess://e://Java//JavaSE//MsAccess//Employees.accdb";
+		String databaseURL = "jdbc:ucanaccess://" + System.getProperty("user.dir")
+				+ properties.getProperty("employeeDBpath");
+		System.out.println("The Data base URL is " + databaseURL);
+		ArrayList<EmployeeDetails> a = new ArrayList<EmployeeDetails>();
+		try (Connection connection = DriverManager.getConnection(databaseURL)) {
+
+			String sql = "SELECT * FROM employee";
+
+			Statement statement = connection.createStatement();
+			ResultSet rs = statement.executeQuery(sql);
+
+			while (rs.next()) {
+				EmployeeDetails e = new EmployeeDetails();
+				// 3 different json files, 3 diff java objects
+				e.setID(rs.getInt("ID"));
+				e.setEmpName(rs.getString("EmpName"));
+				e.setEmpDept(rs.getString("Department"));
+				e.setEmpSal(rs.getString("Salary"));
+				a.add(e);
+			}
+			for (int i = 0; i < a.size(); i++) {
+				ObjectMapper o = new ObjectMapper();
+
+				o.writeValue(new File(System.getProperty("user.dir") + properties.getProperty("resourcePath")
+						+ "employeeInfo" + i + ".json"), a.get(i));
+			}
+			connection.close();
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+	}
 }

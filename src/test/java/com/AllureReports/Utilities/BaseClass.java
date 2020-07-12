@@ -27,29 +27,31 @@ import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class BaseClass {
-	
+
 	public static Properties properties = new Properties();
 	public String baseURL;
 	public static WebDriver driver;
 	// public static Logger logger;
 
 	public void setUp() {
-		
-		File src = new File(System.getProperty("user.dir")+"//src//test//java//com//AllureReports//Configuration//config.properties");
+
+		File src = new File(System.getProperty("user.dir")
+				+ "//src//test//java//com//AllureReports//Configuration//config.properties");
 		try {
-			FileInputStream fis = new FileInputStream(src);			
+			FileInputStream fis = new FileInputStream(src);
 			properties.load(fis);
 		} catch (Exception e) {
 			System.out.println("Exception is " + e.getMessage());
 		}
-		
+
 		String br = properties.getProperty("browser");
 		baseURL = properties.getProperty("baseURL");
 		// logger = Logger.getLogger("ebanking");
 		// PropertyConfigurator.configure("Log4j.properties");
 
 		if (br.equals("chrome")) {
-			System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir")+properties.getProperty("chromepath"));
+			System.setProperty("webdriver.chrome.driver",
+					System.getProperty("user.dir") + properties.getProperty("chromepath"));
 			System.out.println("The chrome path is " + System.getProperty("webdriver.chrome.driver"));
 			driver = new ChromeDriver();
 		} else if (br.equals("firefox")) {
@@ -64,6 +66,18 @@ public class BaseClass {
 		driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
+	}
+
+	public void setUp_API() {
+
+		File src = new File(System.getProperty("user.dir")
+				+ "//src//test//java//com//AllureReports//Configuration//config.properties");
+		try {
+			FileInputStream fis = new FileInputStream(src);
+			properties.load(fis);
+		} catch (Exception e) {
+			System.out.println("Exception is " + e.getMessage());
+		}
 	}
 
 	public WebDriver getDriver() {
