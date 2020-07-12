@@ -1,6 +1,7 @@
 package com.AllureReports.Resources;
 
 public class EmployeeDetails {
+	private DepartmentDetails  deptDetails;
 	private int ID;	
 	private String empName;
 	private String empDept;
@@ -28,6 +29,12 @@ public class EmployeeDetails {
 	}
 	public void setEmpSal(String empSal) {
 		this.empSal = empSal;
+	}
+	public DepartmentDetails getDeptDetails() {
+		return deptDetails;
+	}
+	public void setDeptDetails(DepartmentDetails deptDetails) {
+		this.deptDetails = deptDetails;
 	}
 	
 

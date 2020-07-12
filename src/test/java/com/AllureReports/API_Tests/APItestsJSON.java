@@ -9,6 +9,8 @@ import java.util.Properties;
 import java.io.File;
 import java.io.IOException;
 import java.sql.*;
+
+import org.apache.commons.lang3.StringEscapeUtils;
 /*import java.util.Properties;*/
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -17,11 +19,13 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+import com.AllureReports.Resources.DepartmentDetails;
 import com.AllureReports.Resources.EmployeeDetails;
 import com.AllureReports.Utilities.BaseClass;
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -174,12 +178,11 @@ public class APItestsJSON extends BaseClass {
 			throws ClassNotFoundException, JsonGenerationException, JsonMappingException, IOException {
 
 		Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-		// String databaseURL =
-		// "jdbc:ucanaccess://e://Java//JavaSE//MsAccess//Employees.accdb";
 		String databaseURL = "jdbc:ucanaccess://" + System.getProperty("user.dir")
 				+ properties.getProperty("employeeDBpath");
 		System.out.println("The Data base URL is " + databaseURL);
 		ArrayList<EmployeeDetails> a = new ArrayList<EmployeeDetails>();
+		//JSONArray js = new JSONArray();
 		try (Connection connection = DriverManager.getConnection(databaseURL)) {
 
 			String sql = "SELECT * FROM employee";
@@ -189,22 +192,28 @@ public class APItestsJSON extends BaseClass {
 
 			while (rs.next()) {
 				EmployeeDetails e = new EmployeeDetails();
+				DepartmentDetails dept = new DepartmentDetails();
 				// 3 different json files, 3 diff java objects
+				dept.setDeptName("");
+				dept.setId(1);
+				dept.setLocation("");
+				e.setDeptDetails(dept);
 				e.setID(rs.getInt("ID"));
 				e.setEmpName(rs.getString("EmpName"));
 				e.setEmpDept(rs.getString("Department"));
 				e.setEmpSal(rs.getString("Salary"));
 				a.add(e);
 			}
-			for (int i = 0; i < a.size(); i++) {
-				ObjectMapper o = new ObjectMapper();
-
-				o.writeValue(new File(System.getProperty("user.dir") + properties.getProperty("resourcePath")
-						+ "employeeInfo" + i + ".json"), a.get(i));
-			}
+			Gson g = new Gson();
+			String jsonString = g.toJson(a);
 			connection.close();
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 		}
+
+		ObjectMapper o = new ObjectMapper();
+		o.writeValue(new File(System.getProperty("user.dir") + properties.getProperty("resourcePath")
+				+ "consolidatedEmployeeInfo" + ".json"), a);
+
 	}
 }
