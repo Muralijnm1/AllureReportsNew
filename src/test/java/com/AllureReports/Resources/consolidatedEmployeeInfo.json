@@ -2,9 +2,9 @@
 	{
 		"deptDetails": 
 		{
-			"deptName": "",
+			"deptName": null,
 			"id": 1,
-			"location": ""
+			"location": "Chennai"
 		},
 
 		"empName": "Murali",
@@ -16,9 +16,9 @@
 	{
 		"deptDetails": 
 		{
-			"deptName": "",
-			"id": 1,
-			"location": ""
+			"deptName": null,
+			"id": 2,
+			"location": "Hyderabad"
 		},
 
 		"empName": "Ramesh",
@@ -30,9 +30,9 @@
 	{
 		"deptDetails": 
 		{
-			"deptName": "",
-			"id": 1,
-			"location": ""
+			"deptName": null,
+			"id": 3,
+			"location": "Pune"
 		},
 
 		"empName": "Venu",
@@ -44,9 +44,9 @@
 	{
 		"deptDetails": 
 		{
-			"deptName": "",
+			"deptName": null,
 			"id": 1,
-			"location": ""
+			"location": "Chennai"
 		},
 
 		"empName": "Lalitha",
@@ -58,9 +58,9 @@
 	{
 		"deptDetails": 
 		{
-			"deptName": "",
+			"deptName": null,
 			"id": 1,
-			"location": ""
+			"location": "Chennai"
 		},
 
 		"empName": "Santosh",
@@ -72,9 +72,9 @@
 	{
 		"deptDetails": 
 		{
-			"deptName": "",
-			"id": 1,
-			"location": ""
+			"deptName": null,
+			"id": 3,
+			"location": "Pune"
 		},
 
 		"empName": "Amulya",

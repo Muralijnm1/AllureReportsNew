@@ -185,7 +185,7 @@ public class APItestsJSON extends BaseClass {
 		//JSONArray js = new JSONArray();
 		try (Connection connection = DriverManager.getConnection(databaseURL)) {
 
-			String sql = "SELECT * FROM employee";
+			String sql = "SELECT emp.ID as empID,emp.EmpName as empName,emp.Salary as Salary,dept.Id as deptID,dept.department as deptName,dept.location as location FROM employee emp INNER JOIN DepartmentDetails dept ON emp.department = dept.department";
 
 			Statement statement = connection.createStatement();
 			ResultSet rs = statement.executeQuery(sql);
@@ -194,18 +194,17 @@ public class APItestsJSON extends BaseClass {
 				EmployeeDetails e = new EmployeeDetails();
 				DepartmentDetails dept = new DepartmentDetails();
 				// 3 different json files, 3 diff java objects
-				dept.setDeptName("");
-				dept.setId(1);
-				dept.setLocation("");
-				e.setDeptDetails(dept);
-				e.setID(rs.getInt("ID"));
-				e.setEmpName(rs.getString("EmpName"));
-				e.setEmpDept(rs.getString("Department"));
+				e.setID(rs.getInt("empID"));
+				e.setEmpName(rs.getString("empName"));		
 				e.setEmpSal(rs.getString("Salary"));
+				e.setEmpDept(rs.getString("deptName"));
+				dept.setId(rs.getInt("deptID"));							
+				dept.setLocation(rs.getString("location"));
+				e.setDeptDetails(dept);
 				a.add(e);
 			}
-			Gson g = new Gson();
-			String jsonString = g.toJson(a);
+			//Gson g = new Gson();
+			//String jsonString = g.toJson(a);
 			connection.close();
 		} catch (SQLException ex) {
 			ex.printStackTrace();
