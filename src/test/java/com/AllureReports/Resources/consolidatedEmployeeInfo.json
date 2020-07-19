@@ -1,85 +1,81 @@
-[
-	{
-		"deptDetails": 
-		{
-			"deptName": null,
-			"id": 1,
-			"location": "Chennai"
-		},
-
-		"empName": "Murali",
-		"empDept": "QA",
-		"empSal": "10000",
-		"id": 3
-	},
-
-	{
-		"deptDetails": 
-		{
-			"deptName": null,
-			"id": 2,
-			"location": "Hyderabad"
-		},
-
-		"empName": "Ramesh",
-		"empDept": "Development",
-		"empSal": "12000",
-		"id": 4
-	},
-
-	{
-		"deptDetails": 
-		{
-			"deptName": null,
-			"id": 3,
-			"location": "Pune"
-		},
-
-		"empName": "Venu",
-		"empDept": "BA",
-		"empSal": "9000",
-		"id": 5
-	},
-
-	{
-		"deptDetails": 
-		{
-			"deptName": null,
-			"id": 1,
-			"location": "Chennai"
-		},
-
-		"empName": "Lalitha",
-		"empDept": "QA",
-		"empSal": "8000",
-		"id": 6
-	},
-
-	{
-		"deptDetails": 
-		{
-			"deptName": null,
-			"id": 1,
-			"location": "Chennai"
-		},
-
-		"empName": "Santosh",
-		"empDept": "QA",
-		"empSal": "9800",
-		"id": 7
-	},
-
-	{
-		"deptDetails": 
-		{
-			"deptName": null,
-			"id": 3,
-			"location": "Pune"
-		},
-
-		"empName": "Amulya",
-		"empDept": "BA",
-		"empSal": "14000",
-		"id": 8
-	}
-]
+[ {
+  "deptDetails" : {
+    "deptName" : null,
+    "id" : 1,
+    "location" : "Chennai"
+  },
+  "empName" : "Murali",
+  "empDept" : "QA",
+  "empSal" : "10000",
+  "id" : 3
+}, {
+  "deptDetails" : {
+    "deptName" : null,
+    "id" : 2,
+    "location" : "Hyderabad"
+  },
+  "empName" : "Ramesh",
+  "empDept" : "Dev",
+  "empSal" : "12000",
+  "id" : 4
+}, {
+  "deptDetails" : {
+    "deptName" : null,
+    "id" : 3,
+    "location" : "Pune"
+  },
+  "empName" : "Venu",
+  "empDept" : "BA",
+  "empSal" : "9000",
+  "id" : 5
+}, {
+  "deptDetails" : {
+    "deptName" : null,
+    "id" : 1,
+    "location" : "Chennai"
+  },
+  "empName" : "Lalitha",
+  "empDept" : "QA",
+  "empSal" : "8000",
+  "id" : 6
+}, {
+  "deptDetails" : {
+    "deptName" : null,
+    "id" : 1,
+    "location" : "Chennai"
+  },
+  "empName" : "Santosh",
+  "empDept" : "QA",
+  "empSal" : "9800",
+  "id" : 7
+}, {
+  "deptDetails" : {
+    "deptName" : null,
+    "id" : 3,
+    "location" : "Pune"
+  },
+  "empName" : "Amulya",
+  "empDept" : "BA",
+  "empSal" : "14000",
+  "id" : 8
+}, {
+  "deptDetails" : {
+    "deptName" : null,
+    "id" : 4,
+    "location" : "LosAngeles"
+  },
+  "empName" : "Samba",
+  "empDept" : "HR",
+  "empSal" : "60000",
+  "id" : 9
+}, {
+  "deptDetails" : {
+    "deptName" : null,
+    "id" : 5,
+    "location" : "London"
+  },
+  "empName" : "Rajesh",
+  "empDept" : "AC",
+  "empSal" : "90000",
+  "id" : 10
+} ]

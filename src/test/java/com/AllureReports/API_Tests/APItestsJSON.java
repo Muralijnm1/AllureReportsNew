@@ -25,6 +25,7 @@ import com.AllureReports.Utilities.BaseClass;
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.google.gson.Gson;
 
 import java.sql.Connection;
@@ -181,8 +182,7 @@ public class APItestsJSON extends BaseClass {
 		String databaseURL = "jdbc:ucanaccess://" + System.getProperty("user.dir")
 				+ properties.getProperty("employeeDBpath");
 		System.out.println("The Data base URL is " + databaseURL);
-		ArrayList<EmployeeDetails> a = new ArrayList<EmployeeDetails>();
-		//JSONArray js = new JSONArray();
+		ArrayList<EmployeeDetails> a = new ArrayList<EmployeeDetails>();		
 		try (Connection connection = DriverManager.getConnection(databaseURL)) {
 
 			String sql = "SELECT emp.ID as empID,emp.EmpName as empName,emp.Salary as Salary,dept.Id as deptID,dept.department as deptName,dept.location as location FROM employee emp INNER JOIN DepartmentDetails dept ON emp.department = dept.department";
@@ -210,7 +210,7 @@ public class APItestsJSON extends BaseClass {
 			ex.printStackTrace();
 		}
 
-		ObjectMapper o = new ObjectMapper();
+		ObjectMapper o = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
 		o.writeValue(new File(System.getProperty("user.dir") + properties.getProperty("resourcePath")
 				+ "consolidatedEmployeeInfo" + ".json"), a);
 
