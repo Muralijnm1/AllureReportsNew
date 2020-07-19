@@ -20,6 +20,7 @@ import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.AllureReports.Resources.DepartmentDetails;
+import com.AllureReports.Resources.DepartmentTypeDetails;
 import com.AllureReports.Resources.EmployeeDetails;
 import com.AllureReports.Utilities.BaseClass;
 import com.fasterxml.jackson.core.JsonGenerationException;
@@ -169,7 +170,7 @@ public class APItestsJSON extends BaseClass {
 	}
 
 	@Severity(SeverityLevel.BLOCKER)
-	@Test(enabled = true, priority = 5, description = "Create empolyee JSON")
+	@Test(enabled = false,priority = 5, description = "Create empolyee JSON")
 	@Description("Create empolyee JSON.....")
 	@Epic("EP001")
 	@Feature("Feature4: empolyee JSON")
@@ -203,8 +204,6 @@ public class APItestsJSON extends BaseClass {
 				e.setDeptDetails(dept);
 				a.add(e);
 			}
-			//Gson g = new Gson();
-			//String jsonString = g.toJson(a);
 			connection.close();
 		} catch (SQLException ex) {
 			ex.printStackTrace();
@@ -215,4 +214,62 @@ public class APItestsJSON extends BaseClass {
 				+ "consolidatedEmployeeInfo" + ".json"), a);
 
 	}
+	
+	@Severity(SeverityLevel.BLOCKER)
+	@Test(enabled = true, priority = 5, description = "Create empolyee JSON")
+	@Description("Create empolyee JSON.....")
+	@Epic("EP001")
+	@Feature("Feature4: empolyee JSON")
+	@Story("Story:Empolyee JSON")
+	@Step("Verify Empolyee JSON")
+	public void creat_Employee_JSON3()
+			throws ClassNotFoundException, JsonGenerationException, JsonMappingException, IOException {
+
+		Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+		String databaseURL = "jdbc:ucanaccess://" + System.getProperty("user.dir")
+				+ properties.getProperty("employeeDBpath");
+		System.out.println("The Data base URL is " + databaseURL);
+		ArrayList<EmployeeDetails> a = new ArrayList<EmployeeDetails>();		
+		try (Connection connection = DriverManager.getConnection(databaseURL)) {
+
+			String sql = "SELECT emp.ID as empID, emp.EmpName as empName, emp.Salary as Salary,emp.department as deptName, dept.Id as deptID, dept.location as location,dType.DeptType as deptType,dType.ID as deptTypeId,dType.Country as country, "
+					+ "dType.Description as description FROM (employee AS emp INNER JOIN DepartmentDetails AS dept ON emp.department = dept.department) INNER JOIN DepartmentTypeDetails as dType ON dept.Department = dType.DeptName";
+
+			Statement statement = connection.createStatement();
+			ResultSet rs = statement.executeQuery(sql);
+
+			while (rs.next()) {
+				EmployeeDetails e = new EmployeeDetails();
+				DepartmentDetails dept = new DepartmentDetails();
+				DepartmentTypeDetails dType = new DepartmentTypeDetails();
+				
+				// 3 different json files, 3 diff java objects
+				e.setID(rs.getInt("empID"));
+				e.setEmpName(rs.getString("empName"));		
+				e.setEmpSal(rs.getString("Salary"));
+				e.setEmpDept(rs.getString("deptName"));
+				dept.setId(rs.getInt("deptID"));	
+				dept.setDeptName(rs.getString("deptName"));
+				dept.setLocation(rs.getString("location"));				
+				dType.setId(rs.getInt("deptTypeId"));
+				dType.setDeptName(rs.getString("deptName"));
+				dType.setDeptType(rs.getString("deptType"));
+				dType.setCountry(rs.getString("country"));
+				dType.setDescription(rs.getString("Description"));
+				dept.setdTypeDetails(dType);
+				e.setDeptDetails(dept);
+				a.add(e);
+			}
+			connection.close();
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+
+		ObjectMapper o = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
+		o.writeValue(new File(System.getProperty("user.dir") + properties.getProperty("resourcePath")
+				+ "consolidatedEmployeeInfo" + ".json"), a);
+
+	}
+	
+	
 }

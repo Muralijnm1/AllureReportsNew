@@ -1,6 +1,13 @@
 [ {
   "deptDetails" : {
-    "deptName" : null,
+    "deptName" : "QA",
+    "dTypeDetails" : {
+      "id" : 101,
+      "deptName" : "QA",
+      "deptType" : "IT",
+      "country" : "India",
+      "description" : "Performs QA operations"
+    },
     "id" : 1,
     "location" : "Chennai"
   },
@@ -10,7 +17,14 @@
   "id" : 3
 }, {
   "deptDetails" : {
-    "deptName" : null,
+    "deptName" : "Dev",
+    "dTypeDetails" : {
+      "id" : 104,
+      "deptName" : "Dev",
+      "deptType" : "IT",
+      "country" : "India",
+      "description" : "Performs Dev operations"
+    },
     "id" : 2,
     "location" : "Hyderabad"
   },
@@ -20,7 +34,14 @@
   "id" : 4
 }, {
   "deptDetails" : {
-    "deptName" : null,
+    "deptName" : "BA",
+    "dTypeDetails" : {
+      "id" : 102,
+      "deptName" : "BA",
+      "deptType" : "IT",
+      "country" : "India",
+      "description" : "Performs BA operations"
+    },
     "id" : 3,
     "location" : "Pune"
   },
@@ -30,7 +51,14 @@
   "id" : 5
 }, {
   "deptDetails" : {
-    "deptName" : null,
+    "deptName" : "QA",
+    "dTypeDetails" : {
+      "id" : 101,
+      "deptName" : "QA",
+      "deptType" : "IT",
+      "country" : "India",
+      "description" : "Performs QA operations"
+    },
     "id" : 1,
     "location" : "Chennai"
   },
@@ -40,7 +68,14 @@
   "id" : 6
 }, {
   "deptDetails" : {
-    "deptName" : null,
+    "deptName" : "QA",
+    "dTypeDetails" : {
+      "id" : 101,
+      "deptName" : "QA",
+      "deptType" : "IT",
+      "country" : "India",
+      "description" : "Performs QA operations"
+    },
     "id" : 1,
     "location" : "Chennai"
   },
@@ -50,7 +85,14 @@
   "id" : 7
 }, {
   "deptDetails" : {
-    "deptName" : null,
+    "deptName" : "BA",
+    "dTypeDetails" : {
+      "id" : 102,
+      "deptName" : "BA",
+      "deptType" : "IT",
+      "country" : "India",
+      "description" : "Performs BA operations"
+    },
     "id" : 3,
     "location" : "Pune"
   },
@@ -60,7 +102,14 @@
   "id" : 8
 }, {
   "deptDetails" : {
-    "deptName" : null,
+    "deptName" : "HR",
+    "dTypeDetails" : {
+      "id" : 103,
+      "deptName" : "HR",
+      "deptType" : "Non-IT",
+      "country" : "US",
+      "description" : "Performs HR operations"
+    },
     "id" : 4,
     "location" : "LosAngeles"
   },
@@ -70,7 +119,14 @@
   "id" : 9
 }, {
   "deptDetails" : {
-    "deptName" : null,
+    "deptName" : "AC",
+    "dTypeDetails" : {
+      "id" : 105,
+      "deptName" : "AC",
+      "deptType" : "Non-IT",
+      "country" : "UK",
+      "description" : "Performs Account operations"
+    },
     "id" : 5,
     "location" : "London"
   },

@@ -2,6 +2,13 @@ package com.AllureReports.Resources;
 
 public class DepartmentDetails {
 	private String deptName;
+	DepartmentTypeDetails dTypeDetails;
+	public DepartmentTypeDetails getdTypeDetails() {
+		return dTypeDetails;
+	}
+	public void setdTypeDetails(DepartmentTypeDetails dTypeDetails) {
+		this.dTypeDetails = dTypeDetails;
+	}
 	public String getDeptName() {
 		return deptName;
 	}
